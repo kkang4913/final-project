@@ -1,0 +1,32 @@
+@charset "UTF-8";
+
+.form-section {
+	display: flex;
+	justify-content: center;
+}
+
+.form-container {
+	width: 80rem;
+}
+.div-container {
+	width: 80%;
+}
+
+.form-logo {
+	display: flex;
+	justify-content: center;
+	margin : 5rem auto 6rem auto;
+}
+
+input::placeholder {
+	color: #999999;
+}
+.form-title {
+	font-size: 3rem;
+	margin-top: 5rem;
+	text-align: center;
+}
+.div-line{
+	border-top: 1px solid rgba(0, 0, 0, 0.4);
+	margin-top: 20px;
+}

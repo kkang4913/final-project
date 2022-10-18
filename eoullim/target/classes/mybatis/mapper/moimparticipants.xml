@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="moimParticipantsMapper">
+  
+   <select id ="selectDatas" resultType="moimParticipantsDTO">
+SELECT B.MEMBER_NAME AS memberName
+     , B.MEMBER_ID AS memberId
+     , J.JOB_NAME AS JobName
+     , J.JOB_ID AS jobId
+     , B.MEMBER_IMAGE_PATH AS memberImagePath
+     , L.LOCATION_NAME AS locationName
+  FROM MOIM M
+  JOIN MOIM_PARTICIPANTS P 
+    ON M.MOIM_ID = P.MOIM_ID
+  JOIN MEMBERS B
+    ON B.MEMBER_ID = P.MEMBER_ID
+  JOIN LOCATIONS L
+    ON B.LOCATION_ID = L.LOCATION_ID
+  JOIN JOBS J
+    ON P.JOB_ID = J.JOB_ID
+    WHERE M.MOIM_ID IN (SELECT  P.MOIM_ID   
+                        FROM MOIM_PARTICIPANTS P
+                       WHERE P.MOIM_ID = #{id})
+   </select>
+
+    <select id = "selectJoinMoim" resultType="moimParticipantsDTO">
+        SELECT B.MEMBER_NAME AS memberName
+             , B.MEMBER_ID AS memberId
+             , J.JOB_NAME AS JobName
+             , J.JOB_ID AS jobId
+             , M.MOIM_ID AS moimId
+          FROM MOIM M
+          JOIN MOIM_PARTICIPANTS P
+            ON M.MOIM_ID = P.MOIM_ID
+          JOIN MEMBERS B
+            ON B.MEMBER_ID = P.MEMBER_ID
+          JOIN JOBS J
+            ON P.JOB_ID = J.JOB_ID
+         WHERE B.MEMBER_ID IN (SELECT  P.MEMBER_ID
+                                 FROM MOIM_PARTICIPANTS P
+                                WHERE P.MEMBER_ID = #{id})
+    </select>
+    
+
+    
+   
+    <select id ="selectData" resultType="moimParticipantsDTO" parameterType="moimParticipantsDTO" >
+  SELECT MEMBER_ID 	AS  memberId
+       ,MOIM_ID AS  moimId 
+       ,JOB_ID AS jobId
+   FROM MOIM_PARTICIPANTS WHERE MOIM_ID = #{moimId}  AND MEMBER_ID = #{memberId}
+   </select>
+   
+   <select id ="selectcurrentMemberCount" resultType="moimParticipantsDTO" parameterType="_int">
+   SELECT COUNT(*) AS currentMemberCount
+   FROM MOIM_PARTICIPANTS P
+   WHERE P.MOIM_ID = #{id}
+   </select>
+   
+   	
+	<select id= "selectMemberJoinMoimCount" resultType="moimParticipantsDTO">
+    SELECT COUNT(*) AS memberJoinMoimCount
+    FROM MOIM_PARTICIPANTS
+    WHERE MEMBER_ID = #{id}
+    </select>
+	
+   <select id= "selectAlreadyJoinMember" parameterType="Map" resultType="_int">
+	SELECT COUNT(*) FROM MOIM_PARTICIPANTS   WHERE MOIM_ID =#{id} AND  MEMBER_ID = #{memberId}
+   </select>
+   
+   
+   <select id="selectMoimBoss" resultType="moimParticipantsDTO">
+   SELECT MEMBER_ID AS memberId
+   FROM MOIM_PARTICIPANTS 
+   WHERE MOIM_ID = #{id} AND JOB_ID = 1
+   </select>
+   
+   
+   <insert id="insertData" parameterType="moimParticipantsDTO">
+   INSERT INTO MOIM_PARTICIPANTS 
+   VALUES (#{memberId}, #{moimId}, 3)
+   
+   </insert>
+
+    <update id="updateJob" parameterType="moimParticipantsDTO">
+        UPDATE MOIM_PARTICIPANTS
+           SET JOB_ID = #{jobId}
+         WHERE MOIM_ID = #{moimId}
+           AND MEMBER_ID = #{memberId}
+    </update>
+
+    <delete id="deleteData" parameterType="_int">
+        DELETE FROM MOIM_PARTICIPANTS
+              WHERE MOIM_ID = #{id}
+    </delete>
+    
+    <delete id="deleteMember" parameterType="map">
+    DELETE FROM MOIM_PARTICIPANTS WHERE MEMBER_ID = #{memberId} AND MOIM_ID = #{id}
+    </delete>
+    
+</mapper>

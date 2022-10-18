@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="moimsMapper">
+   <select id="selectCnt" resultType="_int">
+   	   SELECT COUNT(DISTINCT M.MOIM_ID)
+		 FROM MOIM M
+		 JOIN MOIM_PARTICIPANTS MP
+		   ON M.MOIM_ID = MP.MOIM_ID
+		WHERE MP.MEMBER_ID = #{memberId}
+   </select>
+   <select id="getNextSeq" resultType="_int">
+       SELECT SQU_MOIM.NEXTVAL FROM DUAL
+   </select>
+   <select id="selectAll" resultType="somoimDTO" parameterType="Map">
+     SELECT RNUM
+     	  , moimId, moimTitle, moimInfo
+     	  , moimLimit, moimImagePath, categoryId
+     	  , locationId, moimCreateDate, locationName 
+     	FROM
+     	(SELECT ROWNUM AS RNUM, MM.* FROM (
+	        SELECT M.MOIM_ID AS moimId
+	             , M.MOIM_TITLE AS moimTitle
+	             , M.MOIM_INFO AS moimInfo
+	             , M.MOIM_LIMIT AS moimLimit
+	             , M.MOIM_IMAGE_PATH AS moimImagePath
+	             , M.CATEGORY_ID AS categoryId
+	             , M.LOCATION_ID AS locationId
+	             , M.MOIM_CREATE_DATE AS moimCreateDate
+	             , L.LOCATION_NAME AS locationName
+	        FROM  MOIM M
+	        LEFT JOIN LOCATIONS L
+	        ON M.LOCATION_ID = L.LOCATION_ID
+			WHERE 1 = 1
+	           <if test=' search_title != "" '>
+	              AND UPPER(MOIM_TITLE) like UPPER('%'||#{search_title}||'%')
+	           </if>
+	           <if test=' category_id > 0 '>
+	              AND  CATEGORY_ID = #{category_id}
+	           </if>
+	     ORDER BY MOIM_CREATE_DATE DESC) MM
+	     WHERE 1 = 1
+	     AND
+	     <![CDATA[ ROWNUM <= #{num_end}]]>
+         )
+       WHERE
+       	<![CDATA[RNUM >= #{num_start}]]>
+  </select>
+
+  <select id ="selectAllCnt" resultType="_int">
+     SELECT count(*) as cnt
+     FROM MOIM M
+     WHERE 1 = 1
+       <if test=' search_title != "" '>
+        AND UPPER(M.MOIM_TITLE) like UPPER('%'||#{search_title}||'%')
+       </if>
+        <if test=' category_id > 0 '>
+        AND  M.CATEGORY_ID = #{category_id}
+       </if>
+  </select>
+  <select id ="selectData" resultType="somoimDTO">
+     SELECT  M.MOIM_ID  AS moimId
+            ,M.MOIM_TITLE AS moimTitle
+            ,M.MOIM_INFO  AS moimInfo
+            ,M.MOIM_LIMIT  AS moimLimit
+		    ,L.LOCATION_NAME AS locationName
+            ,M.MOIM_IMAGE_PATH  AS moimImagePath
+            ,M.LOCATION_ID  AS locationId
+             ,M.CATEGORY_ID  AS categoryId
+          FROM MOIM M
+	   JOIN LOCATIONS L
+		 ON M.LOCATION_ID = L.LOCATION_ID
+         WHERE M.MOIM_ID = #{id}
+   </select>
+   <insert id="insertData" parameterType="somoimDTO"> <!-- 파일이름 , 네임 추가 -->
+       INSERT INTO MOIM(MOIM_ID
+                       , MOIM_TITLE
+                       , MOIM_INFO
+                       , MOIM_LIMIT
+                       , LOCATION_ID
+                       , MOIM_IMAGE_PATH
+                       , CATEGORY_ID
+                       , MOIM_CREATE_DATE)
+       VALUES(SQU_MOIM.NEXTVAL
+             , #{moimTitle}
+             , #{moimInfo}
+             , #{moimLimit}
+             , #{locationId}
+             , #{moimImagePath}
+             , #{categoryId}
+             , SYSDATE)
+      <selectKey keyColumn="MOIM_ID" keyProperty="moimId" resultType="int" order="AFTER">
+           SELECT SQU_MOIM.currval
+          	 FROM dual
+      </selectKey>
+   </insert>
+   <insert id="insertDataSub" parameterType="moimParticipantsDTO">
+ 		  INSERT INTO MOIM_PARTICIPANTS(MEMBER_ID
+ 		  							  , MOIM_ID
+ 		  							  , JOB_ID)
+ 		 					     VALUES(#{memberId}
+ 		  							  , #{moimId}
+ 		  							  , 1)
+   </insert>
+   <update id="updateData" parameterType="somoimDTO">
+        UPDATE MOIM
+           SET MOIM_TITLE = #{moimTitle}
+             , MOIM_INFO = #{moimInfo}
+             , MOIM_LIMIT = #{moimLimit}
+             ,CATEGORY_ID = #{categoryId}
+             ,LOCATION_ID = #{locationId}
+             ,MOIM_CREATE_DATE = SYSDATE
+              WHERE MOIM_ID = #{moimId}
+   </update>
+
+   <update id="updateImage" parameterType="somoimDTO">
+        UPDATE MOIM
+        SET MOIM_IMAGE_PATH= #{moimImagePath}
+      WHERE MOIM_ID = #{moimId}
+   </update>
+
+    <update id="updateInfoImage" parameterType="memberDto">
+        UPDATE MEMBERS
+           SET INFO_IMAGE_PATH = #{infoImagePath}
+         WHERE MEMBER_ID = #{memberId}
+    </update>
+
+    <update id="updateProfileImage" parameterType="memberDto">
+        UPDATE MEMBERS
+        SET MEMBER_IMAGE_PATH = #{memberImagePath}
+        WHERE MEMBER_ID = #{memberId}
+    </update>
+
+   <select id="selectSubDatas" resultType="somoimDTO">
+   		SELECT M.MOIM_TITLE AS moimTitle
+	 		 , M.MOIM_ID AS moimId
+		  FROM MOIM M
+		  JOIN MOIM_PARTICIPANTS MP
+  			ON M.MOIM_ID = MP.MOIM_ID
+		 WHERE 1 = 1
+		 <if test=' memberId != null and memberId != ""'>
+		   AND MP.MEMBER_ID = #{memberId}
+		 </if>
+   </select>
+   <select id="selectSubDatas_bmk" resultType="somoimDTO">
+   		SELECT MOIM_TITLE AS moimTitle
+	 		 , MOIM_ID AS moimId
+		  FROM MOIM
+  		 WHERE 1=1
+  		<if test='moimIds != null' >
+		  AND MOIM_ID IN
+		  <foreach collection="moimIds" item="item" index="index" separator="," open="(" close=")">
+		  #{item}
+		  </foreach>
+		</if>
+   </select>
+   <delete id="deleteMoimData" parameterType="_int">
+       DELETE FROM MOIM
+             WHERE MOIM_ID = #{id}
+   </delete>
+</mapper>
+

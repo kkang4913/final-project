@@ -1,0 +1,639 @@
+@charset "UTF-8";
+
+/*boxSize*/
+
+
+.mainbox{
+	margin-left: 8rem;
+	margin-right: 8rem;
+	margin-top:227px;
+	margin-bottom:150px;
+}
+
+.container-1 {
+	margin: 0.2rem 0.5rem;
+}
+
+
+.img-box-size-1{
+	height: 240px;
+  
+}
+
+.category-box-120{
+	height:120px;
+	width: 120px;
+	border-radius:50%;
+}
+
+.date-bs{
+    width:90px;
+    height:90px;
+}
+
+.width{
+    width:auto;
+    z-index:2;
+}
+
+.moim-colecter{
+    width:220px;
+    height:90px;
+    z-index:1;
+}
+
+.width-100{
+	width:100%;
+}
+
+.card-body-size{
+	height:105px;
+}
+
+
+/*position*/
+
+.card-body-position{
+	flex: 1 1 auto;
+	padding: 1rem 1rem;
+  }
+
+.flex-box{
+   display:flex;
+}
+
+.center{
+	display:flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.space-between{
+	display:flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.space-evenly{
+	display:flex;
+	justify-content: space-evenly;
+	align-items: center;
+}
+
+.psi-r{
+	position:relative;
+}
+
+.psi-a{
+	position:absolute;
+}
+
+
+
+
+/*move*/
+
+.bottom-10{
+  bottom: 10px;
+}
+
+
+.top-50{
+	top: 50px;
+  }
+
+.top-40{
+	top:50px;
+}
+
+.top-20{
+	top:20px
+}
+
+.left-28{
+	left:28px;
+}
+
+.left-24{
+	left:24px;
+}
+
+
+
+/* margin*/
+
+
+.margin-10{
+	margin:10px;
+}
+
+.margin-left-600{
+	margin-left: 600px;
+}
+
+.margin-left-auto{
+	margin-left: auto;
+}
+.img-box{
+	margin:20px 150px 0px 150px;
+}
+
+.margin-top-20{
+    margin-top:20px;
+}
+
+.margin-top-50{
+    margin-top:50px;
+}
+
+.margin-top-78{
+    margin-top:78px;
+}
+
+
+.nav-item a {
+	margin-right:30px;
+}
+
+
+.margin-left-10{
+	margin-left:10px;
+}
+
+
+.margin-left-160{
+    margin-left:160px;
+}
+
+.margin-bottom-20{
+	margin-bottom:20px;
+}
+
+.margin-left-223{
+	margin-left:223px;
+}
+
+.info-box-mb div {
+	margin-bottom:3px;
+}
+
+
+
+
+/*padding*/
+
+
+.p-6{
+	padding:6px;
+}
+
+.p-15{
+	padding:15px;
+}
+
+
+.p-30{
+	padding:30px;
+}
+
+
+/*font*/
+
+.font-s-50{
+	font-size:50px;
+}
+
+.nav-item a {
+    font-size:20px;	
+}
+
+.font-s-30{
+    font-size:30px;	
+}
+
+/*color*/
+
+.bc-wh{
+	background-color:white;
+}
+
+.bc-wg{
+	background-color:#eff1f3;
+}
+
+/*border*/
+.bora-20{
+    border-radius:10px;
+}
+
+/*word*/
+.word-hidden {
+	margin-top: 3px;
+	color: black;
+    overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: normal;
+	line-height: 1.2;
+	height: 3.6em;
+	text-align: left;
+	word-wrap: break-word;
+	display: -webkit-box;
+	-webkit-line-clamp: 3 ;
+	-webkit-box-orient: vertical;
+	font-weight: normal;
+	
+}
+
+/* 정모 ---------------------------------------------------------- */
+.meeting-date {
+	background-color: #f7f7f7;
+	width: 21.6rem;
+	height: 12rem;
+	border-radius: 1rem;
+	margin-right: 2rem;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 1.5rem 3rem;
+}
+.meeting-day {
+	font-size: 6rem;
+	font-weight: 900;
+}
+.meeting-dow {
+	height: 4.5rem;
+	display: flex;
+	align-items: end;
+	font-size: 2rem;
+}
+.meeting-info-box {
+	height: 26rem;
+	flex: 1;
+	display: flex;
+	justify-content: space-between;
+	border: 1px solid var(--border-line__grey);
+	border-radius: 1rem;
+	font-size: 1.6rem;
+	font-weight: 400;
+	padding: 3rem;
+}
+
+.meeting-info>div {
+	display: flex;
+	text-align: center;
+	margin-top: 2rem;
+}
+
+.meeting-info>div:first-child {
+	margin-top: 0;
+}
+
+
+.meeting-info>div:first-child span {
+	font-weight: 500;
+}
+
+.meeting-info__icon {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 2.4rem;
+	height: 2.4rem;
+	margin-right: 2rem;
+}
+
+.meeting-info-btn {
+
+}
+
+.meeting-info-btn button {
+	font-size: 1.6rem;
+	color: #666666;
+	margin-left: 2rem;
+}
+
+.meeting-part {
+	display: flex;
+	align-items: center;
+	margin: 0 1rem 0.5rem 0;
+}
+
+.meeting-part-btn {
+	margin: 1rem 2rem 0 0;
+}
+
+.meeting-btn {
+	margin-top: 3rem;
+	font-size: 1.4rem;
+	font-weight: 400;
+}
+
+/* 소모임 정보 및 멤버 ------------------------------------------------------*/
+.moim-info__span {
+	font-size: 1.4rem;
+	font-weight: 400;
+	color: #666666;
+}
+
+.moim-member-info {
+	display: flex;
+	margin-bottom: 3rem;
+}
+
+.moim-member-info:hover {
+	border-radius: 0.8rem;
+	background-color: #669cec30;
+	cursor: pointer;
+}
+
+.moim-member__img {
+	margin-right: 1rem;
+}
+
+.moim-member-detail {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	margin: 0.4rem 0;
+}
+
+.moim-member-detail__row {
+	display: flex;
+	font-size: 1.6rem;
+	font-weight: 400;
+	align-items: center;
+}
+
+.moim-member-detail__row:first-child {
+	color: var(--purple);
+}
+
+.moim-member-detail__row:last-child>span {
+	margin-right: 1rem;
+}
+
+.moim-member-detail__row:last-child {
+	font-weight: 500;
+}
+
+.moim-member-detail__row span {
+	margin-right: 0.5rem;
+}
+
+.moim-info {
+	margin-top: 1rem;
+	font-size: 1.6rem;
+	line-height: 1.5;
+}
+
+
+/* board ----------------------------------------------------------- */
+.board-header {
+	display: flex;
+	padding-bottom: 2rem;
+	border-bottom: 1px solid var(--border-line__grey);
+	margin-bottom: 4rem;
+}
+
+.board-title {
+	font-size: 3rem;
+	font-weight: 700;
+	margin-bottom: 1.5rem;
+	display: flex;
+	justify-content: space-between;
+}
+
+.board-writer-img,
+.comment-writer-img {
+	margin-right: 1.5rem;
+}
+
+.board-writer {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	margin: 1rem 0;
+}
+
+.board-writer span:first-child {
+	font-size: 1.6rem;
+	font-weight: 700;
+}
+
+.board-writer span:last-child {
+	font-size: 1.4rem;
+	font-weight: 500;
+	color: #999999;
+}
+
+.board-content {
+	font-size: 2rem;
+	margin-bottom: 4rem;
+	line-height: 1.5;
+}
+
+.board-footer {
+	padding-bottom: 3rem;
+}
+
+.board-footer>span {
+	margin-right: 0.5rem;
+}
+
+.board-footer__detail>span:hover {
+	cursor: pointer;
+}
+
+.comment-box {
+	padding-top: 3rem;
+	border-top: 1px solid var(--border-line__grey);
+}
+
+.comment-info {
+	display: flex;
+	margin-bottom: 2rem;
+}
+
+.comment-content {
+	display: flex;
+	flex-direction: column;
+	margin-top: 1rem;
+}
+
+.comment-content>span {
+	margin-bottom: 2rem;
+	font-size: 1.6rem;
+	font-weight: 400;
+}
+
+.comment-content>span:first-child {
+	font-weight: 700;
+}
+
+.comment-content>span:nth-child(2) {
+	line-height: 1.5;
+}
+
+.comment-footer {
+	display: flex;
+	font-size: 1.4rem;
+	font-weight: 400;
+	color: #999999;
+}
+
+.comment-footer>span {
+	margin-right: 1rem;
+}
+
+/* 게시글 작성 폼 */
+.board-add-title {
+	margin-bottom: 3rem;
+	font-size: 2.4rem;
+	font-weight: 700;
+}
+
+.add-form {
+	font-size: 1.4rem;
+}
+
+.add-form__input {
+	display: block;
+	flex:1;
+	padding: 0.5rem 1rem;
+	font-size: 1.6rem;
+	font-weight: 400;
+	line-height: 1.5;
+	color: #212529;
+	background-color: #fff;
+	background-clip: padding-box;
+	border: 1px solid #ced4da;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	border-radius: 0.25rem;
+	transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.add-form__group {
+	position: relative;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: stretch;
+	margin-bottom: 2rem;
+}
+
+.add-form__group:first-of-type {
+	margin-bottom: 3rem;
+}
+
+.add-form__group span:nth-of-type(2) {
+	background-color: transparent;
+}
+
+.add-form__group-text {
+	display: flex;
+	align-items: center;
+	padding: 0.5rem 1rem;
+	font-size: 1.6rem;
+	font-weight: 400;
+	line-height: 1.5;
+	color: #212529;
+	text-align: center;
+	white-space: nowrap;
+	background-color: #e9ecef;
+	border: 1px solid #ced4da;
+	border-radius: 0.25rem;
+}
+
+.add-form__select {
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+	padding-left: 1rem;
+	font-size: 1.6rem;
+	border-radius: 0.3rem;
+	flex: 1;
+}
+
+.add-form__btn {
+	display: flex;
+	justify-content: flex-end;
+}
+
+.add-form__two-group {
+	display: flex;
+}
+
+.test-group {
+	width: 100%;
+	margin-bottom: 2rem;
+}
+
+.test-group:last-of-type {
+	margin-left: 3rem;
+}
+
+.add-form__btn button {
+	margin-left: 2rem;
+}
+
+.board-add__label {
+	margin-bottom:1rem;
+	font-size: 1.6rem;
+}
+
+/* 정모 폼 */
+
+.meeting-form {
+	display: flex;
+	flex-direction: column;
+	margin: 0 10rem;
+}
+
+.meeting-form-input {
+	display: flex;
+	align-items: center;
+	margin-bottom: 1.5rem;
+}
+
+.meeting-form-input>span {
+	margin-right: 1rem;
+}
+
+.meeting-form__input {
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	border-radius: 0.5rem;
+	padding: 1rem 1rem;
+	font-size: 1.5rem;
+	transition: border-color 0.3s ease-in-out;
+	flex: 1;
+}
+.meeting-form__label {
+	display: block;
+	margin-bottom: 0.5rem;
+	font-size: 1.4rem;
+}
+.meeting-form-inline__input {
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	border-radius: 0.5rem;
+	outline-style: none;
+	margin: 0 0.2rem;
+	font-size: 1.5rem;
+	padding: 1rem 1rem;
+	width: 33%;
+}
+.meeting-form__btn {
+	width: 48%;
+	font-size: 1.8rem;
+	border: none;
+	padding: 1rem 0;
+	cursor: pointer;
+	border-radius: 0.5rem;
+	margin: 2.5rem 0;
+}
+.meeting-form__btn:last-child {
+	color: var(--white);
+}
+.meeting-form-inline {
+	display: flex;
+	justify-content: space-between;
+}

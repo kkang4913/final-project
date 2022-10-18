@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="mettingsMapper">
+  
+   <select id ="selectDatas" resultType="meetingsDTO" parameterType="_int">
+       SELECT MEETING_ID AS meetingId
+            , MEETING_TITLE AS meetingTitle
+            , MEETING_DATE AS meetingDate
+            , MEETING_TIME AS meetingTime
+            , MEETING_PLACE AS meetingPlace
+            , MEETING_PRICE AS meetingPrice
+            , MEETING_LIMIT AS meetingLimit
+            , MOIM.MOIM_ID AS moimId
+         FROM MEETINGS
+         JOIN MOIM
+           ON MEETINGS.MOIM_ID = MOIM.MOIM_ID
+       WHERE MEETINGS.MOIM_ID = #{id}
+    </select>
+
+    <select id ="selectData" resultType="meetingsDTO" parameterType="_int">
+        SELECT MEETING_ID AS meetingId
+             , MEETING_TITLE AS meetingTitle
+             , MEETING_DATE AS meetingDate
+             , MEETING_TIME AS meetingTime
+             , MEETING_PLACE AS meetingPlace
+             , MEETING_PRICE AS meetingPrice
+             , MEETING_LIMIT AS meetingLimit
+             , MOIM.MOIM_ID AS moimId
+        FROM MEETINGS
+                 JOIN MOIM
+                      ON MEETINGS.MOIM_ID = MOIM.MOIM_ID
+        WHERE MEETING_ID = #{id}
+    </select>
+
+    <select id="getNextSeq" resultType="_int">
+        SELECT SQU_MEETINGS.NEXTVAL FROM DUAL
+    </select>
+
+    <insert id="insertData" parameterType="meetingsDTO">
+        INSERT INTO MEETINGS( MEETING_ID
+                            , MEETING_TITLE
+                            , MEETING_DATE
+                            , MEETING_TIME
+                            , MEETING_PLACE
+                            , MEETING_PRICE
+                            , MEETING_LIMIT
+                            , MEETING_CREATE_DATE
+                            , MOIM_ID)
+             VALUES ( #{meetingId}
+                    , #{meetingTitle}
+                    , #{meetingDate}
+                    , #{meetingTime}
+                    , #{meetingPlace}
+                    , #{meetingPrice}
+                    , #{meetingLimit}
+                    , SYSDATE
+                    , #{moimId})
+    </insert>
+
+    <update id="updateData" parameterType="meetingsDTO">
+        UPDATE MEETINGS
+           SET MEETING_TITLE = #{meetingTitle}
+             , MEETING_DATE = #{meetingDate}
+             , MEETING_TIME = #{meetingTime}
+             , MEETING_PLACE = #{meetingPlace}
+             , MEETING_PRICE = #{meetingPrice}
+             , MEETING_LIMIT = #{meetingLimit}
+         WHERE MEETING_ID = #{meetingId}
+    </update>
+
+    <delete id = "deleteData" parameterType="_int">
+        DELETE FROM MEETINGS
+              WHERE MOIM_ID = #{id}
+    </delete>
+    <delete id = "deleteMeetingData" parameterType="_int">
+        DELETE FROM MEETINGS
+        WHERE MEETING_ID = #{id}
+    </delete>
+</mapper>
+

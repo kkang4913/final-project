@@ -1,0 +1,57 @@
+.dropdown__meeting {
+
+}
+
+.dropdown-header {
+    border-radius: 2rem;
+    background-color: #f7f7f7;
+    padding: 2rem 2rem;
+    margin-bottom: 1rem;
+    font-size: 1.6rem;
+    display: flex;
+    justify-content: space-between;
+    color: black;
+}
+
+.dropdown-btn {
+    margin: 0 0 0 1rem;
+    text-align: left;
+    font-size: 2rem;
+}
+
+.dropdown-btn:hover {
+    cursor: pointer;
+}
+
+.dropdown-content {
+    border-radius: 2rem;
+    background-color: #f7f7f7;
+    padding: 2rem 2rem;
+    margin-bottom: 1rem;
+    font-size: 1.6rem;
+    color: #999999;
+}
+
+.dropdown-content a {
+    color: #666666;
+}
+
+.dropdown-content a:hover {
+    color: black;
+}
+
+.dropdown-content>div>div {
+    margin-bottom: 1.5rem;
+}
+
+.dropdown-content>div>div:last-child {
+    margin-bottom: 0;
+}
+
+.drop__hover {
+    filter: brightness(90%);
+}
+
+.drop__selected {
+    border: 0.2rem solid var(--purple);
+}

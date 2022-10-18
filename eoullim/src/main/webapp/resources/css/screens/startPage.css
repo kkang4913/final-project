@@ -1,0 +1,105 @@
+@charset "UTF-8";
+
+.start-page {
+	margin-left: 3rem;
+}
+
+.start-page>div:first-of-type {
+	margin-top: 4rem;
+}
+
+.start-page-title {
+	margin-top: 4rem;
+}
+
+.start-page-title>span {
+	display: block;
+	font-size: 6rem;
+	margin-top: 2rem;
+}
+
+.start-page-btn {
+	width: 34rem;
+	height: 7rem;
+	border-radius: 17rem;
+	background-color: var(--grey);
+	margin-top: 4rem;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.start-page-btn>button {
+	background-color: transparent;
+	border: none;
+	font-size: 2rem;
+	padding-left: 3rem;
+}
+
+.start-page-btn:hover {
+	cursor: pointer;
+}
+
+.start-page-arrow {
+	width: 7rem;
+	height: 7rem;
+	display: flex;
+	border-radius: 50%;
+	background-color: var(--purple);
+	color: white;
+	justify-content: center;
+	align-items: center;
+	font-size: 2.8rem;
+	font-weight: 400;
+}
+
+
+.container_start .header{
+	width: 80%;
+	height: 80px;
+	margin: 0 auto;
+	display: flex;
+}
+
+.container_start .header h1{
+	text-decoration: none;
+	color: green;
+	font-family: GmarketSansMedium;
+	margin-top: 10px;
+}
+
+.container_start .hero{
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%,-50%);
+	color: green;
+	text-align:  center;
+	font-family: GmarketSansMedium;
+}
+
+.container_start .hero h2{
+	font-size: 60px;
+	margin-bottom: 20px;
+}
+.container_start .hero p{
+    font-size: 22px;
+}
+.container_start .hero button{
+	background: none;
+	border: 2px solid darkseagreen;
+	color: green;
+	padding: 15px 28px;
+	border-radius: 20px;
+	margin-top: 30px;
+	outline: none;
+	cursor: pointer;
+	transition: all .4s;
+	font-family: GmarketSansMedium;
+
+}
+
+.container_start .hero button:hover{
+	background-color:  darkslategray;
+}
+

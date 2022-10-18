@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="commentsMapper">
+  
+    
+    <select id="selectDatas" parameterType="map"  resultType="commentsDTO" >
+    SELECT C.COMMENT_ID AS commentId
+          ,C.BOARD_ID AS boardId
+          ,C.CONTENT AS content
+          ,C.CONTENT_CREATE_DATE AS contentCreateDate
+          ,C.MOIM_ID AS moimId
+          ,C.MEMBER_ID AS memberId
+          ,M.MEMBER_NAME AS memberName
+          ,M.MEMBER_IMAGE_PATH AS memberImagePath
+         FROM BOARD_COMMENT  C
+         JOIN MEMBERS M
+         ON M.MEMBER_ID = C.MEMBER_ID  
+        WHERE C.MOIM_ID = #{id} AND C.BOARD_ID = #{boardId}
+        ORDER BY C.CONTENT_CREATE_DATE DESC
+    </select>
+
+    <select id="selectWriteDatas" resultType="commentsDTO" >
+        SELECT B.BOARD_ID AS boardId
+             ,B.CONTENT AS content
+             ,B.CONTENT_CREATE_DATE AS contentCreateDate
+             ,B.MOIM_ID AS moimId
+             ,B.MEMBER_ID AS memberId
+             ,A.BOARD_TITLE AS boardTitle
+             ,M.MOIM_TITLE AS moimTitle
+             ,M.MOIM_IMAGE_PATH AS moimImagePath
+        FROM BOARD_COMMENT B
+                 RIGHT JOIN BOARDS A
+                            ON B.BOARD_ID = A.BOARD_ID
+                 RIGHT JOIN MOIM M
+                            ON B.MOIM_ID = M.MOIM_ID
+        WHERE B.MEMBER_ID = #{id}
+        ORDER BY B.CONTENT_CREATE_DATE DESC
+    </select>
+    
+        <select id="selectData"  resultType="commentsDTO" >
+    SELECT COMMENT_ID  AS commentId
+         ,BOARD_ID AS boardId
+         ,CONTENT AS content
+         ,CONTENT_CREATE_DATE AS contentCreateDate
+         ,MOIM_ID AS moimId
+         ,MEMBER_ID AS memberId
+     FROM BOARD_COMMENT WHERE COMMENT_ID = #{id}
+           
+    </select>
+    
+
+    <insert id="insertData" parameterType="commentsDTO" >
+    INSERT INTO BOARD_COMMENT VALUES (SQU_COMMENT.NEXTVAL, #{boardId}, #{content}, SYSDATE,#{moimId},#{memberId})
+    </insert>
+    
+    
+    <delete id="deleteData" parameterType="_int" >
+    DELETE FROM BOARD_COMMENT WHERE BOARD_ID =#{id}
+   </delete>
+   
+   
+   <delete id="deleteCommentData" parameterType="_int" >
+    DELETE FROM BOARD_COMMENT WHERE COMMENT_ID = #{id}
+   </delete>
+   
+   
+    <update id="updateCommentData"  parameterType="commentsDTO" >
+    UPDATE   BOARD_COMMENT  
+       SET   CONTENT = #{content}
+      WHERE  COMMENT_ID = #{commentId}
+   </update>
+
+</mapper>
+

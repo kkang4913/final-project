@@ -1,0 +1,119 @@
+@charset "UTF-8";
+
+.login-form {
+	display: flex;
+	flex-direction: column;
+	margin: 0 6rem;
+}
+.login-form__input {
+	border: none;
+	border-radius: 0.5rem;
+	padding: 1.9rem 1rem;
+	font-size: 1.6rem;
+	margin-bottom:  1.5rem;
+	font-weight: 700;
+	background-color: var(--grey);
+}
+.login-form__input::placeholder {
+	color: #666666
+}
+.login-form span {
+	margin-top: 0.5rem;
+	text-align: right;
+}
+.login-form__btn {
+	color: var(--white);
+	fint-weight: 700;
+	font-size: 1.6rem;
+	border: none;
+	padding: 1.9rem 0;
+	cursor: pointer;
+	border-radius: 0.5rem;
+	margin-top: 2.5rem;
+	font-weight: 700;
+}
+.login-form__checkbox {
+	display: inline-block;
+	position: relative;
+	top: 0.25rem;
+	width: 1.5rem;
+	height: 1.5rem;
+	display: inline;
+}
+
+.error_login{
+	font-size: 1.8rem;
+	color: red;
+	text-align: justify;
+    width: 71%;
+}
+
+
+.link-row {	
+	color: #999999;
+	font-size: 1.2rem;
+	display: flex;
+	justify-content: space-evenly;
+	margin: 2rem 6rem 5rem 6rem;
+}
+.link-row a {
+	text-align: center;
+	font-size: 1.6rem;
+}
+.social-login {
+	display: flex;
+	flex-direction: column;
+	margin: 0 6rem;
+}
+.social-login__btn {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: var(--white);
+	font-size: 1.6rem;
+	font-weight: 700;
+	border: none;
+	padding: 1.5rem 0;
+	margin-top: 1.5rem;
+	border-radius: 0.5rem;
+}
+.social-login__btn img{
+	display: inline-block;
+	margin-right: 1.5rem;
+}
+.social-login__btn:first-child img{
+	width: 3rem;
+	height: 3rem;
+}
+.social-login__btn:nth-child(2) img{
+	width: 2.2rem;
+	height: 2rem;
+}
+.social-login__btn:last-child img{
+	width: 2.2rem;
+	height: 2.2rem;
+}
+
+.social-login__btn:nth-child(2) {
+	color: #2e363e;
+	padding: 1.8rem 0;
+}
+
+.hr-sect {
+	display: flex;
+	flex-basis: 100%;
+	align-items: center;
+	color: #999999;
+	font-size: 1.2rem;
+	margin: 0 4.5rem 2rem 4.5rem;
+}
+.hr-sect::before,
+.hr-sect::after {
+	content: "";
+	flex-grow: 1;
+	background: #999999;
+	height: 0.1rem;
+	font-size: 0;
+	line-height: 0;
+	margin: 0 1.6rem;
+}

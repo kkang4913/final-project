@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="boardsMapper">
+  
+   <select id ="selectDatas" resultType="boardsDTO" parameterType="_int">
+SELECT B.BOARD_ID AS boardId
+,B.BOARD_TITLE AS boardTitle
+             ,B.CONTENT AS content
+             ,B.BOARD_CREATE_DATE AS boardCreateDate
+             ,B."LIKE" AS "like"
+             ,B.MOIM_ID AS moimId
+             ,B.MEMBER_ID AS memberId
+             ,M.MEMBER_NAME AS memberName
+             ,S.JOB_NAME AS jobName
+             ,M.MEMBER_IMAGE_PATH AS memberImagePath
+FROM (SELECT *
+      FROM MOIM_PARTICIPANTS P
+      JOIN JOBS J 
+      ON J.JOB_ID = P.JOB_ID
+      WHERE P.MOIM_ID =  #{id}) S
+JOIN BOARDS B 
+ON S.MEMBER_ID = B.MEMBER_ID 
+JOIN MEMBERS M
+ON M.MEMBER_ID = S.MEMBER_ID
+WHERE B.MOIM_ID = #{id}
+ORDER BY B.BOARD_CREATE_DATE DESC
+    </select>
+
+ 
+   <select id ="selectBoardInfoList" resultType="boardsDTO" parameterType="_int">
+SELECT A.BOARD_ID AS boardId
+      ,A.COUNTCOMMENT AS commentCount
+      ,A.BOARD_TITLE AS boardTitle
+      ,A.CONTENT AS content
+      ,A.BOARD_CREATE_DATE AS boardCreateDate
+      ,A."LIKE" AS "like"
+      ,A.MOIM_ID AS moimId
+      ,A.MEMBER_ID AS memberId
+      ,M.MEMBER_NAME  AS memberName
+      ,M.MEMBER_IMAGE_PATH AS memberImagePath
+FROM (SELECT T.BOARD_ID
+      ,T.COUNTCOMMENT
+      ,B.BOARD_TITLE
+      ,B.CONTENT
+      ,B.BOARD_CREATE_DATE
+      ,B."LIKE"
+      ,B.MOIM_ID
+      ,B.MEMBER_ID
+FROM (SELECT B.BOARD_ID
+      ,COUNT(C.BOARD_ID) AS COUNTCOMMENT
+FROM BOARDS B
+LEFT JOIN BOARD_COMMENT C 
+ON B.BOARD_ID =C.BOARD_ID
+WHERE B.MOIM_ID = #{id}
+GROUP BY B.BOARD_ID) T
+JOIN BOARDS B
+ON B.BOARD_ID = T.BOARD_ID) A 
+JOIN MEMBERS M 
+ON M.MEMBER_ID = A.MEMBER_ID
+ORDER BY A.BOARD_CREATE_DATE DESC
+    </select>
+    
+ <select id ="selectBoardInfo" resultType="boardsDTO" parameterType="_int">   
+    SELECT A.BOARD_ID AS boardId
+      ,A.COMMENTCOUNT  AS  commentCount
+      ,A.BOARD_TITLE AS boardTitle
+      ,A.CONTENT  AS content
+      ,A.BOARD_CREATE_DATE AS boardCreateDate
+      ,A.MOIM_ID  AS moimId
+      ,A.MEMBER_ID AS memberId
+      ,M.MEMBER_NAME  AS memberName
+      ,M.MEMBER_IMAGE_PATH AS memberImagePath
+FROM (SELECT C.BOARD_ID
+      ,C.COMMENTCOUNT
+      ,B.BOARD_TITLE
+      ,B.CONTENT
+      ,B.BOARD_CREATE_DATE
+      ,B.MOIM_ID
+      ,B.MEMBER_ID
+FROM (SELECT B.BOARD_ID 
+       ,COUNT(C.COMMENT_ID) AS commentCount
+FROM BOARDS B
+LEFT JOIN BOARD_COMMENT C
+ON B.BOARD_ID = C.BOARD_ID
+WHERE B.BOARD_ID = #{id}
+GROUP BY B.BOARD_ID) C
+JOIN BOARDS B 
+ON B.BOARD_ID = C.BOARD_ID) A
+JOIN MEMBERS M 
+ON M.MEMBER_ID = A.MEMBER_ID
+   </select>   
+    
+
+
+
+
+    <select id ="selectWriteDatas" resultType="boardsDTO">
+        SELECT B.BOARD_ID AS boardId
+             , B.BOARD_TITLE AS boardTitle
+             , B.CONTENT AS content
+             , B.BOARD_CREATE_DATE AS boardCreateDate
+             , B."LIKE" AS "like"
+             , B.MOIM_ID AS moimId
+             , B.MEMBER_ID AS memberId
+             , M.MOIM_TITLE AS moimTitle
+          FROM BOARDS B
+          JOIN MOIM M
+            ON B.MOIM_ID = M.MOIM_ID
+         WHERE B.MEMBER_ID = #{id}
+    </select>
+    
+     <select id ="selectCommentCount" resultType="boardsDTO">
+         SELECT  BOARD_ID AS boardId
+         ,COUNT(BOARD_ID) AS commentCount
+        FROM BOARD_COMMENT
+       WHERE MOIM_ID = #{id}
+       GROUP BY BOARD_ID
+    </select>
+    
+    
+
+    <insert id="insertData" parameterType="boardsDTO" >
+    INSERT INTO BOARDS VALUES (
+                  SQU_BOARDS.NEXTVAL,
+                  #{boardTitle}, 
+                  #{content},
+                  SYSDATE,
+                  '',
+                  #{moimId},
+                  #{memberId})
+    </insert>
+    
+    <select id="selectBoardData" parameterType="boardsDTO" resultType="boardsDTO" >
+     SELECT BOARD_ID AS boardId
+    ,BOARD_TITLE AS boardTitle
+    ,CONTENT AS content
+    ,BOARD_CREATE_DATE AS boardCreateDate
+    ,"LIKE" AS  "like"
+    ,MOIM_ID AS moimId
+    ,MEMBER_ID  AS  memberId
+    FROM BOARDS WHERE MOIM_ID = ${moimId} AND BOARD_ID = ${boardId}
+    </select>
+
+      <select id="selectData" parameterType="boardsDTO" resultType="boardsDTO" >
+     SELECT BOARD_ID AS boardId
+    ,BOARD_TITLE AS boardTitle
+    ,CONTENT AS content
+    ,BOARD_CREATE_DATE AS boardCreateDate
+    ,"LIKE" AS  "like"
+    ,MOIM_ID AS moimId
+    ,MEMBER_ID  AS  memberId
+    FROM BOARDS WHERE BOARD_ID = ${boardId}
+    </select>
+
+   <update id="updateData" parameterType="boardsDTO" >
+     UPDATE BOARDS  
+        SET BOARD_TITLE = #{boardTitle}
+           ,CONTENT = #{content}
+      WHERE BOARD_ID = #{boardId}
+   </update>
+
+
+   <delete id="deleteData" parameterType="_int" >
+    DELETE FROM BOARDS  WHERE BOARD_ID = #{id}
+   </delete>
+
+
+
+    <delete id="deleteBoardsData" parameterType="_int">
+        DELETE FROM BOARDS
+              WHERE MOIM_ID = #{id}
+    </delete>
+</mapper>
+

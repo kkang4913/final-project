@@ -1,0 +1,88 @@
+@charset "UTF-8";
+
+.join-form {
+	display: flex;
+	flex-direction: column;
+	margin: 0 5rem;
+}
+
+.join-form__input {
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	border-radius: 0.5rem;
+	padding: 0.8rem 1rem;
+	font-size: 1.6rem;
+	margin: 0rem 0.8rem 0.5rem 0rem;
+	transition: border-color 0.3s ease-in-out;
+	width: 95%;
+	
+}
+.join-form__label {
+	font-size: 1.4rem;
+	font-weight: bold;
+	display: block;
+	margin-bottom: 0.5rem;
+}
+.join-form__btn {
+	font-size: 1.8rem;
+	border: none;
+	padding: 1rem 0;
+	cursor: pointer;
+	border-radius: 0.5rem;
+	margin: 5px 0px 5px 0px;
+}
+._chk{
+	background-color: var(--purple);
+}
+.join-form-inline {
+	display: flex;
+	justify-content: space-between;
+}
+
+.join-form-flex {
+	display: flex;
+}
+
+.join-form_category_option{
+	display: inline-block;
+	width: 49%;
+	margin-bottom: 0.2rem;
+}
+
+
+.join-form-inline__input {
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	border-radius: 0.5rem;
+	outline-style: none;
+	margin: 0 0.2rem;
+	padding: 1rem 1rem;
+	font-size: 1.6rem;
+	width: 33%;
+	margin-bottom: 0.5rem;
+}
+.join-form-inline__div {
+	display: flex;
+	flex-direction: column;
+	width: 48%;
+}
+
+.error-id-msg,.error-pw1-msg,.error-pw2-msg,.error-oldPw-msg,.error-name-msg,.error-phone-msg{
+	color: red;
+	font-size: 1.5rem;
+}
+.last_btn{
+	display: flex;
+	justify-content: space-between;
+}
+.last_btn > .join-form__btn{
+	padding: 1rem;
+	margin: 2.5rem 0 ;
+	
+}
+.last_btn > .join-form__btn:last-child {
+	color: black;
+}
+
+.checked{
+	display: none;
+}
+

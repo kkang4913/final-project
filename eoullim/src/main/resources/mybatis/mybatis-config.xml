@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<settings>
+		<setting name="jdbcTypeForNull" value="NULL"/>
+	</settings>
+
+	<typeAliases>
+	   <typeAlias type="com.myweb.somoim.moim.model.BoardsDTO" alias="boardsDTO"/>
+	   <typeAlias type="com.myweb.somoim.model.SomoimDTO" alias="somoimDTO"/>
+	   <typeAlias type="com.myweb.somoim.moim.model.MeetingsDTO" alias="meetingsDTO"/>
+	   <typeAlias type="com.myweb.somoim.participants.model.MoimParticipantsDTO" alias="moimParticipantsDTO"/>
+	   <typeAlias type="com.myweb.somoim.participants.model.MeetingParticipantsDTO" alias="meetingParticipantsDTO"/>
+		<typeAlias type="com.myweb.somoim.common.model.LocationsDTO" alias="locDto" />
+		<typeAlias type="com.myweb.somoim.categorys.model.CategorysDTO" alias="categoryDto" />
+		<typeAlias type="com.myweb.somoim.members.model.MembersDTO" alias="memberDto" />
+		<typeAlias type="com.myweb.somoim.moim.model.CommentsDTO" alias="commentsDTO"/>
+		
+	</typeAliases>
+
+</configuration>
+

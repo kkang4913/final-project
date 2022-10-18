@@ -1,0 +1,119 @@
+/* header -------------------------------------------------------- */
+
+.header{
+    width: 100%;
+    height: 56.7rem;
+}
+
+.img-grad-layer {
+    width: 100%;
+    height: 40rem;
+    z-index: 1;
+    background: linear-gradient(#00000080, 30%, #ffffff00);
+    position: absolute;
+    top:0;
+     cursor: pointer;
+}
+
+.header-img{
+    height: 40rem;
+    position: relative;
+}
+
+.header-img__img{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top:0;
+}
+
+.header-info-img__cate{
+    object-fit: cover;
+    background-color: var(--purple);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12rem;
+    color: white;
+}
+
+.header-info-box {
+    display: flex;
+    position: relative;
+    width: 144rem;
+    height: 33.4rem;
+    margin: 0 auto;
+    align-items: flex-end;
+    top: -15.4rem;
+    z-index: 2;
+}
+
+.header-info-img {
+    width: 31rem;
+    height: 31rem;
+    overflow: hidden;
+    float:left;
+}
+
+.header-info-img__img {
+    width: 100%;
+    height: 100%;
+    border: 1px solid var(--border-line__grey);
+    object-fit: cover;
+    z-index: 1;
+    cursor: pointer;
+}
+
+.header-info__column:last-child{
+    display: flex;
+    align-items: center;
+    margin-top: 1.6rem;
+}
+
+.header-info-title {
+    width: 130px;
+    font-size: 4rem;
+    font-weight: 700;
+}
+
+.header-info__column:last-child>span {
+    display: block;
+    color: #666666;
+    font-size: 2.4rem;
+    font-weight: 400;
+    margin-left: 2rem;
+}
+
+.header-info__column .material-icons {
+    margin-left: 2rem;
+    margin-right: 0.5rem;
+}
+
+.header-info-detail {
+    margin-left: 4rem;
+    margin-bottom: 3.3rem;
+}
+
+.header-info-btn {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    width: 21.6rem;
+    margin-bottom: 5rem;
+}
+
+.headerinfo-btn__flex {
+    display: flex;
+    align-items: center;
+}
+.headerinfo-btn__flex button:last-child {
+    margin-left: 2.5rem;
+}
+
+.moim-limit {
+    color: black;
+}

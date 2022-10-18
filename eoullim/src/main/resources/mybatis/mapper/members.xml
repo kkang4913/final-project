@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="memberMapper">
+	<select id="selectData" parameterType="memberDto" resultType="memberDto">
+		SELECT BOOKMARK AS bookmark
+   		  FROM MEMBERS
+   		WHERE 1=1
+   		<if test='memberId != null and memberId != ""' >
+ 	     AND MEMBER_ID = #{memberId}
+		</if>
+	</select>
+	<update id="updateBookmark" parameterType="memberDto">
+		UPDATE MEMBERS SET BOOKMARK = #{bookmark} WHERE MEMBER_ID = #{memberId}
+	</update>
+
+
+	<insert id="insertData" parameterType="memberDto">
+		INSERT INTO MEMBERS(
+		  MEMBER_ID
+		, MEMBER_NAME
+		, PASSWORD
+		, GENDER
+		, BIRTH
+		, PHONE 
+		, CATEGORY 
+		, LOCATION_ID
+		, MEMBER_IMAGE_PATH
+		, INFO_IMAGE_PATH
+		, LOGIN_TYPE)
+     VALUES( #{memberId},#{memberName},#{password}, #{gender}, #{birth}, #{phone},#{category}, #{locationId}, #{memberImagePath},#{infoImagePath}, #{loginType})
+	</insert>
+	
+	<select id="selectLogin" parameterType="memberDto" resultType="memberDto">
+		SELECT M.MEMBER_ID AS memberId
+	 	 ,M.MEMBER_NAME AS memberName
+	 	 ,M.PASSWORD
+	 	 ,M.GENDER
+	 	 ,M.BIRTH
+	 	 ,M.PHONE
+	 	 ,M.CATEGORY
+	 	 ,M.BOOKMARK
+	 	 ,M.MEMBER_IMAGE_PATH AS memberImagePath
+	 	 ,M.INFO_IMAGE_PATH AS infoImagePath
+	 	 ,M.LOCATION_ID AS locationId
+	 	 ,M.LOGIN_TYPE AS loginType
+	 	 ,L.LOCATION_NAME  AS locationName
+				FROM MEMBERS M
+				JOIN LOCATIONS L
+				  ON M.LOCATION_ID = L.LOCATION_ID
+				WHERE M.MEMBER_ID =#{memberId}
+				  AND M.PASSWORD = #{password}
+	</select>
+	<select id="typeSelectLogin" parameterType="memberDto" resultType="memberDto">
+		SELECT M.MEMBER_ID AS memberId
+	 	 ,M.MEMBER_NAME AS memberName
+	 	 ,M.PASSWORD
+	 	 ,M.GENDER
+	 	 ,M.BIRTH
+	 	 ,M.PHONE
+	 	 ,M.CATEGORY
+	 	 ,M.BOOKMARK
+	 	 ,M.MEMBER_IMAGE_PATH AS memberImagePath
+	 	 ,M.INFO_IMAGE_PATH AS infoImagePath
+	 	 ,M.LOCATION_ID AS locationId
+	 	 ,M.LOGIN_TYPE AS loginType
+	 	 ,L.LOCATION_NAME  AS locationName
+				FROM MEMBERS M
+				JOIN LOCATIONS L
+				  ON M.LOCATION_ID = L.LOCATION_ID
+				WHERE M.MEMBER_ID =#{memberId}
+				  AND M.LOGIN_TYPE = #{loginType}
+	</select>
+	<select id="idChk" resultType="int">
+		SELECT COUNT(*) FROM MEMBERS
+		WHERE MEMBER_ID = #{memberId}
+	</select>
+	<select id="kakaoidChk" resultType="int">
+		SELECT COUNT(*)  FROM MEMBERS
+		WHERE MEMBER_ID = #{memberId}
+	</select>
+		<select id="phoneChk" resultType="int">
+		SELECT COUNT(*) FROM MEMBERS
+		WHERE PHONE = #{phone}
+	</select>
+	<select id="selectFindId" parameterType="memberDto" resultType="memberDto">
+   		SELECT M.MEMBER_ID AS memberId
+   			    ,LOGIN_TYPE AS loginType
+				FROM MEMBERS M
+				WHERE M.MEMBER_NAME = #{memberName}
+		 		 AND M.BIRTH =  #{birth}
+		 		 AND M.PHONE = #{phone}
+	</select>
+		<select id="selectFindPw" parameterType="memberDto" resultType="memberDto">
+   		SELECT DBMS_RANDOM.STRING('X',8) AS PASSWORD 
+   		        ,M.MEMBER_ID AS memberId
+   		        ,M.MEMBER_NAME AS memberName
+   		        ,M.PHONE
+				FROM MEMBERS M
+				WHERE M.MEMBER_ID = #{memberId}
+		 		 AND M.MEMBER_NAME =  #{memberName}
+		 		 AND M.PHONE = #{phone}
+	</select>
+		<update id="updatePw" parameterType="memberDto">
+				UPDATE MEMBERS
+		  			 SET PASSWORD = #{password}
+		 		WHERE MEMBER_ID = #{memberId}
+		 		 AND MEMBER_NAME =  #{memberName}
+		 		 AND PHONE = #{phone}
+		</update>
+		<update id="updateCate" parameterType="memberDto">
+				UPDATE MEMBERS
+		  			 SET CATEGORY = #{category}
+		 		WHERE MEMBER_ID = #{memberId}
+		 		 AND MEMBER_NAME =  #{memberName}
+		 		 AND PHONE = #{phone}
+		</update>
+	<update id="updateData" parameterType="memberDto">
+		UPDATE MEMBERS
+		   SET PASSWORD = #{password}
+			 , PHONE = #{phone}
+			 , CATEGORY = #{category}
+			 , LOCATION_ID = #{locationId}
+		 WHERE MEMBER_ID = #{memberId}
+		   AND MEMBER_NAME =  #{memberName}
+	</update>
+	<update id="basicupdateData" parameterType="memberDto">
+		UPDATE MEMBERS
+		   SET PHONE = #{phone}
+			 , CATEGORY = #{category}
+			 , LOCATION_ID = #{locationId}
+		 WHERE MEMBER_ID = #{memberId}
+		   AND MEMBER_NAME =  #{memberName}
+	</update>
+	<select id="selectMemberData" parameterType="memberDto" resultType="memberDto">
+		SELECT M.MEMBER_ID AS memberId
+			 ,M.MEMBER_NAME AS memberName
+			 ,M.PASSWORD AS password
+			 ,M.GENDER AS gender
+			 ,M.BIRTH AS birth
+			 ,M.PHONE AS phone
+			 ,M.CATEGORY AS category
+			 ,M.BOOKMARK as bookmark
+			 ,M.MEMBER_IMAGE_PATH AS memberImagePath
+			 ,M.INFO_IMAGE_PATH AS infoImagePath
+			 ,M.LOCATION_ID AS locationId
+			 ,L.LOCATION_NAME  AS locationName
+		FROM MEMBERS M
+				 JOIN LOCATIONS L
+					  ON M.LOCATION_ID = L.LOCATION_ID
+		WHERE M.MEMBER_ID = #{memberId}
+	</select>
+
+	
+</mapper>
+

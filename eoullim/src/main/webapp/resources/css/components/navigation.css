@@ -1,0 +1,28 @@
+.section__nav {
+    display: flex;
+    align-items: center;
+    height: 3.4rem;
+    margin-bottom: 4rem;
+}
+
+.nav__list {
+    height: 80%;
+    display: flex;
+}
+
+.nav__btn {
+    color: #666666;
+    font-size: 2rem;
+    margin-right: 4rem;
+}
+
+.nav__hover {
+    color: var(--purple);
+    border-bottom: 2px solid var(--purple);
+    cursor: pointer;
+}
+
+.nav__selected {
+    color: var(--purple);
+    border-bottom: 2px solid var(--purple);
+}
